@@ -68,22 +68,18 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = (`<header>This is my header</header>`);
+module.exports = `<header>This is my header</header>`;
 
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_header_js__ = __webpack_require__(0);
+let Header = __webpack_require__(0);
 
-
-document.body.innerHTML = __WEBPACK_IMPORTED_MODULE_0__components_header_js__["a" /* default */];
+document.body.innerHTML = Header;
 
 
 /***/ })
