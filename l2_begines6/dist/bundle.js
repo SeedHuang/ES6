@@ -76,12 +76,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _templateObject = _taggedTemplateLiteral(["<header>This is my header</header>"], ["<header>This is my header</header>"]);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = hello(_templateObject);
+var Header = "<header>This is my header</header>";
+exports.default = Header;
 
 /***/ }),
 /* 1 */

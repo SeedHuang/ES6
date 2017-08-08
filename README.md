@@ -1,118 +1,34 @@
 # Learning ES6
 
-
-## Simple Wepack
-
-```
-(function(modules) { // webpackBootstrap
-        // The module cache
-        var installedModules = {};
-
-        // The require function
-        function __webpack_require__(moduleId) {
-
-                // Check if module is in cache
-                if (installedModules[moduleId]) {
-                        return installedModules[moduleId].exports;
-                }
-                // Create a new module (and put it into the cache)
-                var module = installedModules[moduleId] = {
-                        i: moduleId,
-                        l: false,
-                        exports: {}
-                };
-
-                // Execute the module function
-                modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
-                // Flag the module as loaded
-                module.l = true;
-
-                // Return the exports of the module
-                return module.exports;
-        }
-
-
-        // expose the modules object (__webpack_modules__)
-        __webpack_require__.m = modules;
-
-        // expose the module cache
-        __webpack_require__.c = installedModules;
-
-        // identity function for calling harmony imports with the correct context
-        __webpack_require__.i = function(value) {
-                return value;
-        };
-
-        // define getter function for harmony exports
-        __webpack_require__.d = function(exports, name, getter) {
-                if (!__webpack_require__.o(exports, name)) {
-                        Object.defineProperty(exports, name, {
-                                configurable: false,
-                                enumerable: true,
-                                get: getter
-                        });
-                }
-        };
-
-        // getDefaultExport function for compatibility with non-harmony modules
-        __webpack_require__.n = function(module) {
-                var getter = module && module.__esModule ?
-                        function getDefault() {
-                                return module['default'];
-                        } :
-                        function getModuleExports() {
-                                return module;
-                        };
-                __webpack_require__.d(getter, 'a', getter);
-                return getter;
-        };
-
-        // Object.prototype.hasOwnProperty.call
-        __webpack_require__.o = function(object, property) {
-                return Object.prototype.hasOwnProperty.call(object, property);
-        };
-
-        // __webpack_public_path__
-        __webpack_require__.p = "";
-
-        // Load entry module and return exports
-        return __webpack_require__(__webpack_require__.s = 1);
-})
-
-([
-/* 0 */
-        (function(module, __webpack_exports__, __webpack_require__) {
-
-                "use strict";
-                /* harmony default export */
-                __webpack_exports__["a"] = (`<header>This is my header</header>`);
-
-
-        }),
-/* 1 */
-        (function(module, __webpack_exports__, __webpack_require__) {
-
-                "use strict";
-                Object.defineProperty(__webpack_exports__, "__esModule", {
-                        value: true
-                });
-                /* harmony import */
-                var __WEBPACK_IMPORTED_MODULE_0__components_header_js__ = __webpack_require__(0);
-
-
-                document.body.innerHTML = __WEBPACK_IMPORTED_MODULE_0__components_header_js__["a" /* default */ ];
-
-
-        })
-]);
-
-```
-
 ## How to translate ES6
+ES6截止chrome61仍然有一些功能无法实现，比如class和import class，对于这些缺失以及对于之前的兼容性，`babel`仍然是我们最好的选择。
+
 Install `babel-core`, `babel-loader`, `babel-preset-es2015`
 ```
  npm install --save-dev babel-core babel-loader babel-preset-es2015
+
+```
+
+### webpack.config.js
+```
+module.exports = {
+    "entry": `${__dirname}./js/main.js`,
+    "output": {
+        filename: 'bundle.js',
+        path: `${__dirname}/dist/`
+    },
+    module:{
+        loaders: [
+            {
+                test: /\.js$/,
+                loader: "babel-loader",
+                query: {
+                    "presets": ["2015"]
+                }
+            }
+        ]
+    }
+}
 ```
 
 ## 参数
@@ -160,7 +76,11 @@ exports     |object             |模块声明运行的产出物，他没有特�
 
 ## ES5 Module vs ES6 Module
 
-![es5modulevses6module](./imgs/es5vses6module.png)
+![es5modulevses6module](./imgs/es5modulevseses6module.png)
+从图中可以看到，es5模块，比es6模块中，附加的function要少的多。
+es5模块中没有
+- _interopRequireDefault
+-
 
 ## Webpack中的重要函数
 
@@ -184,5 +104,3 @@ function _interopRequireDefault(obj) {
 name    |type       |description
 --------|-----------|--------------------------
 obj     |object     |模块实例
-
-> It has a problem
