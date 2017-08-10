@@ -104,3 +104,190 @@ function _interopRequireDefault(obj) {
 name    |type       |description
 --------|-----------|--------------------------
 obj     |object     |模块实例
+
+
+## ES6 class
+
+示例：
+
+```
+function(module, exports, __webpack_require__) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    var _createClass = function() {
+        function defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor = props[i];
+                descriptor.enumerable = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+        return function(Constructor, protoProps, staticProps) {
+            if (protoProps) defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) defineProperties(Constructor, staticProps);
+            return Constructor;
+        };
+    }();
+
+    function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+        }
+    }
+    var Body = function() {
+        function Body(message) {
+            _classCallCheck(this, Body);
+            this.message = message;
+        }
+        _createClass(Body, [{
+            key: "toString",
+            value: function toString() {
+                return "<div class=\"body\">" + this.message + "</div>";
+            }
+        }]);
+        return Body;
+    }();
+    exports.default = Body;
+}
+```
+
+
+ES6的class转化成ES5之后会在原本的模块内产生两个新的私有方法
+
+_createClass
+> javascript的类别都是由构造函数实现的，createClass就是创建一个构造函数，并将静态属性和方法，以及实例的属性和方法通过Object.defineProperty的方式与构造函数或者实例进行关联。
+
+以下是createClass的具体方法
+
+```
+var _createClass = function() {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor) descriptor.writable = true;
+            Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }
+    return function(Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);
+        if (staticProps) defineProperties(Constructor, staticProps);
+        return Constructor;
+    };
+}();
+```
+
+其中有一些Object.defineProperty的知识需要普及一下：
+
+***enumerable(可枚举)***
+
+我通过解释以下2个问题来说明一下？
+- 如何说明一个属性或者方法是可以枚举的呢？
+    有两种方法：`Object.keys(...)`以及`for ... in`循环    
+- 在何种情况下才需要用到可枚举的属性？
+    当用户并不知道在一个对象下究竟有什么属性和方法的时候，任何可枚举的属性都可以在`Object.keys(...)`以及`for ... in`循环中显现出来，不可枚举的就无法显示。
+
+所以可枚举的作用在尽可能的保护对象属性不被非作者方所使用。 但同样如果你知道有可能有一个属性或者方法也选择可以直接打印对应的属性和方法
+
+***示例***
+
+```
+var a = {};
+Object.defineProperty(a, 'hello', {
+    enumerable: false,
+    value: function(){
+        alert("hello")
+    }
+});
+for(var key in a) console.log(key)
+Object.keys(a) // []
+console.log(a.hello) //ƒ (){alert("hello")}
+```
+
+***configurable(可配置)***
+
+可配置是指是否可以添加或者删除一个属性或者方法
+
+```
+var a = {};
+Object.defineProperty(a, 'hello', {
+	configurable:false
+});
+a.hello = 1;
+console.log(a.hello); // undefine
+Object.defineProperty(a, 'hello', {
+	configurable:true
+});
+
+```
+
+<span style="color:red">
+VM129:2 Uncaught TypeError: Cannot redefine property: hello <br/>
+    at Function.defineProperty (&lt;anonymous&gt;)<br/>
+    at &lt;anonymous&gt;:2:8</span>
+
+
+`configurable`一旦设置为false，就没有办法再设置为`true`,但是反过来如果一开始设置为true，之后在设置为false，这样是可以的
+
+```
+var a = {};
+Object.defineProperty(a, 'hello', {
+	configurable:true
+});
+console.log(a.hello); // undefine
+Object.defineProperty(a, 'hello', {
+	configurable:false
+});
+a.hello = 1;
+console.log(a.hello);
+// undefine
+```
+
+***writable(可写)***
+
+可写和只读是对应的，在`writable:false`，但是`configurable`没有设置的情况下，如设置了`writeable:true`的，则`configurable`将被默认设置为`false`，除非显示声明设置`configurable:true`，
+
+
+
+```
+var a = {};
+function alertMethod () {
+    alert("hello");
+}
+Object.defineProperty(a, 'hello', {
+    writable: false,
+    value: alertMethod
+});
+a.hello = 1;
+console.assert(a.hello == alertMethod , 'a.hello is readonly');
+delete a.hello;
+console.assert(a.hello === undefined, 'a.hello is configurable and readonly');
+```
+结果：
+<span style="color:red">VM269:12 Assertion failed: a.hello is configurable and readonly</span>
+
+```
+var a = {};
+function alertMethod () {
+    alert("hello");
+}
+Object.defineProperty(a, 'hello', {
+    configurable: true,
+    writable: false,
+    value: alertMethod
+});
+a.hello = 1;
+console.assert(a.hello == alertMethod , 'a.hello is readonly');
+delete a.hello;
+console.assert(a.hello === undefined, 'a.hello is configurable and readonly');
+```
+结果：
+<span style="color:green">passed</span>
+
+_classCallCheck
+> 用于验证是否直接把类别当成方法来使用
