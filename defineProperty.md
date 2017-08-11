@@ -1,5 +1,11 @@
 # DefineProperty 的四个属性
 
+- enumerable
+- configurable
+- writable
+- value
+
+
 #### enumerable(可枚举)
 
 我通过解释以下2个问题来说明一下？
@@ -104,3 +110,7 @@ console.assert(a.hello === undefined, 'a.hello is configurable and readonly');
 ```
 结果：
 <span style="color:green">passed</span>
+
+### value
+
+value就是具体的值，如果没有设置，默认是`undefined`
