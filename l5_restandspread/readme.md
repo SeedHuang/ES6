@@ -99,10 +99,91 @@ console.log({...cc, ...funcObj2});
 ```
 > function, number, boolean不能够iterable的基础数据类型都会被`spread`忽略
 
-### Set和Spread组合进行数组去重
-var a = [1, 2, 2, 3, 5, 4, 3, 2];
-console.log([...new Set(a)]);
-// [1, 2, 3, 5, 4]
+***webpack + babel-preset-2015***
+
+****es6****
+
+```
+var arr1 = [1, 2, 3];
+var arr2 = [2, 4, 5];
+var obj = {a: 1};
+
+/*组合数组*/
+var resultArr = [...arr1, ...arr2];
+console.log(resultArr);
+// (6) [1, 2, 3, 2, 4, 5]
+
+
+/*将文字转化为数组与数组结合*/
+var str1 = 'hello';
+console.log([...arr1, ...str1]);
+// [1, 2, 3, 'h', 'e', 'l', 'l', 'o'];
+
+/*将文字与数组结合*/
+console.log([...arr1, str1]);
+// [1, 2, 3, 'hello'];
+
+/*利用Set方法对原本数组中的重复项进行去重*/
+console.log([...new Set([1, 3, 2, 3, 4, 2])]);
+// [1, 3, 2, 4];
+
+```
+
+****es5****
+
+```
+function _toConsumableArray(arr) {
+        if (Array.isArray(arr)) {
+                for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+                        arr2[i] = arr[i];
+                }
+                return arr2;
+        } else {
+                return Array.from(arr);
+        }
+}
+
+// 数组
+var arr1 = [1, 2, 3];
+var arr2 = [2, 4, 5];
+var obj = {
+        a: 1
+};
+
+/*组合数组*/
+var resultArr = [].concat(arr1, arr2);
+console.log(resultArr);
+// (6) [1, 2, 3, 2, 4, 5]
+
+/*将文字转化为数组与数组结合*/
+var str1 = 'hello';
+console.log([].concat(arr1, _toConsumableArray(str1)));
+// [1, 2, 3, 'h', 'e', 'l', 'l', 'o'];
+
+/*将文字与数组结合*/
+console.log([].concat(arr1, [str1]));
+// [1, 2, 3, 'hello'];
+
+/*利用Set方法对原本数组中的重复项进行去重*/
+console.log([].concat(_toConsumableArray(new Set([1, 3, 2, 3, 4, 2]))));
+```
+
+#### _toConsumableArray
+
+```
+function _toConsumableArray (arr) {
+    if (Array.isArray(arr)) {
+        for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+            arr2[i] = arr[i];
+        }
+        return arr2;
+        } else {
+            return Array.from(arr);
+        }
+}
+```
+
+> 这个名字没有理解，但是功能理解了，如果传入参数的是一个Array类型的，然后返回这个数组的浅拷贝，如果不是arr，就使用Array.from创建一个Array对象，如果这个参数满足(iterable)[http://es6.ruanyifeng.com/#docs/set-map]的条件就可以将其内容转为数组，如果不是，就返回一个空数组。
 
 
 # Rest

@@ -1,19 +1,18 @@
-import {
-        Name,
-        Age
-} from './components/data';
-import data from './components/data';
-import {
-        Name2,
-        Age2
-} from './components/data2';
+// 数组
+var arr1 = [1, 2, 3];
+var arr2 = [2, 4, 5];
+var obj = {
+        a: 1
+};
+var resultArr = [...arr1, ...arr2];
+console.log(resultArr);
+// (6) [1, 2, 3, 2, 4, 5]
+var str1 = 'hello';
+console.log([...arr1, ...str1]);
+// [1, 2, 3, 'h', 'e', 'l', 'l', 'o'];
+console.log([...arr1, str1]);
+// [1, 2, 3, 'hello'];
 
-document.body.innerHTML = `My name is ${Name}, I'm ${Age} years-old and I want to say ${data.Say()}, and this is my friend ${Name2}, he's age is ${Age2}`;
+console.log([...new Set([1, 3, 2, 3, 4, 2])])
 
-
-function A(a, b, c, d, e) {
-        return a + b + c + d + e;
-}
-
-var a = [2, 3];
-console.log(A(1, ...a, 4, 5));
+// webpack has supported
