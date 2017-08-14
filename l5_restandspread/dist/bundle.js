@@ -76,29 +76,13 @@
 Object.defineProperty(exports, "__esModule", {
         value: true
 });
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Body = function () {
-        function Body(message) {
-                _classCallCheck(this, Body);
-
-                this.message = message;
+var Name = exports.Name = "HuangChunhua";
+var Age = exports.Age = 32;
+exports.default = {
+        Say: function Say() {
+                return "Hello";
         }
-
-        _createClass(Body, [{
-                key: "toString",
-                value: function toString() {
-                        return "<div class=\"body\">" + this.message + "</div>";
-                }
-        }]);
-
-        return Body;
-}();
-
-exports.default = Body;
+};
 
 /***/ }),
 /* 1 */
@@ -110,29 +94,13 @@ exports.default = Body;
 Object.defineProperty(exports, "__esModule", {
         value: true
 });
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Header = function () {
-        function Header(headMessage) {
-                _classCallCheck(this, Header);
-
-                this.headMessage = headMessage;
+exports.default = {
+        Name2: "Jack",
+        Age2: 20,
+        Say2: function Say2() {
+                return 'My God';
         }
-
-        _createClass(Header, [{
-                key: "toString",
-                value: function toString() {
-                        return "<header>" + this.headMessage + "</header>";
-                }
-        }]);
-
-        return Header;
-}();
-
-exports.default = Header;
+};
 
 /***/ }),
 /* 2 */
@@ -141,18 +109,22 @@ exports.default = Header;
 "use strict";
 
 
-var _header = __webpack_require__(1);
+var _data = __webpack_require__(0);
 
-var _header2 = _interopRequireDefault(_header);
+var _data2 = _interopRequireDefault(_data);
 
-var _body = __webpack_require__(0);
-
-var _body2 = _interopRequireDefault(_body);
+var _data3 = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-document.body.innerHTML = new _header2.default('This is class') + new _body2.default('This is Body');
-console.log(Obj);
+document.body.innerHTML = 'My name is ' + _data.Name + ', I\'m ' + _data.Age + ' years-old and I want to say ' + _data2.default.Say() + ', and this is my friend ' + _data3.Name2 + ', he\'s age is ' + _data3.Age2;
+
+function A(a, b, c, d, e) {
+        return a + b + c + d + e;
+}
+
+var a = [2, 3];
+console.log(A.apply(undefined, [1].concat(a, [4, 5])));
 
 /***/ })
 /******/ ]);
