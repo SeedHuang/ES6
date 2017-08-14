@@ -3,10 +3,11 @@
 > 百度翻译：Spread —— 展开; 伸开; （使） 传播; （使） 散布;
 
 ## Spread主要功能
-- 代替apply的传入可变长参数功能
-- 高效链接数组
-- 高效复制数组
-- 高效合并对象
+- [代替apply的传入可变长参数功能](https://github.com/SeedHuang/ES6/tree/master/l5_restandspread#spread主要功能)
+- [高效链接数组](https://github.com/SeedHuang/ES6/tree/master/l5_restandspread#高效链接数组)
+- [高效复制数组](https://github.com/SeedHuang/ES6/tree/master/l5_restandspread#高效复制数组)
+- [高效合并对象](https://github.com/SeedHuang/ES6/tree/master/l5_restandspread#高效合并对象)
+- [Set和Spread组合进行数组去重](https://github.com/SeedHuang/ES6/tree/master/l5_restandspread#set和spread组合进行数组去重)
 
 ### 代替apply的传入可变长参数功能
 
