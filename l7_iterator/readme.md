@@ -167,12 +167,14 @@ for (var _iterator = person[Symbol.iterator](), _step;
 
 > 目前在Chrome Canary 61版本上使用源码（未经过babel转换）测试该功，但是经过babel转换之后，continue的功能没有实现。
 
-> 需要注意的是<br/>
-for(let value of a ){ <br/>
-&emsp;&emsp;if(value == "hello") {<br/>
-&emsp;&emsp;&emsp;&emsp;continue;<br/>
-&emsp;&emsp;}<br/>
+> 需要注意的是
+```
+for(let value of a ){
+    if(value == "hello") {
+        continue;
+    }
 }
+```
 这种方式是不会触发return的
 
 
