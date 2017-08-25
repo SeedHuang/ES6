@@ -62,7 +62,7 @@
     }
 }();*/
 
-!function(){
+/*!function(){
     let a = {
         0: "hello",
         1: "world",
@@ -103,7 +103,44 @@
         }
     }
     catch(e) {
-        console.log(e);
+        console.error(e);
     }
+}();
+*/
 
+!function(){
+    let a = {
+        0: "hello",
+        1: "world",
+        length: 2,
+        index: 0,
+        [Symbol.iterator]: function(){
+            var self = this;
+            return {
+                next: function () {
+                    if(self.index < 2) {
+                        var value =self[self.index];
+                        self.index++;
+                        return {
+                            value
+                        }
+                    }
+                    else {
+                        return {
+                            done: true
+                        }
+                    }
+                },
+                return: function(){
+                    console.log("This is return");
+                    return {
+                        done: true
+                    }
+                }
+            }
+        }
+    }
+    for(let value of a ){
+        continue;
+    }
 }();

@@ -138,6 +138,52 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
 }();*/
 
+/*!function(){
+    let a = {
+        0: "hello",
+        1: "world",
+        length: 2,
+        index: 0,
+        [Symbol.iterator]: function(){
+            var self = this;
+            return {
+                next: function () {
+                    if(self.index < 2) {
+                        var value =self[self.index];
+                        self.index++;
+                        return {
+                            value
+                        }
+                    }
+                    else {
+                        return {
+                            done: true
+                        }
+                    }
+                },
+                return: function(){
+                    console.log("This is return");
+                    return {
+                        done: true
+                    }
+                }
+            }
+        }
+    }
+    try {
+        for(let value of a ){
+            console.log(value);
+            if(value == "hello") {
+                throw new Error();
+            }
+        }
+    }
+    catch(e) {
+        console.error(e);
+    }
+}();
+*/
+
 !function () {
     var a = _defineProperty({
         0: "hello",
@@ -168,36 +214,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
         };
     });
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
     try {
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
+        for (var _iterator = a[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var value = _step.value;
 
+            continue;
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally {
         try {
-            for (var _iterator = a[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var value = _step.value;
-
-                console.log(value);
-                if (value == "hello") {
-                    throw new Error();
-                }
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
             }
-        } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
         } finally {
-            try {
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                    _iterator.return();
-                }
-            } finally {
-                if (_didIteratorError) {
-                    throw _iteratorError;
-                }
+            if (_didIteratorError) {
+                throw _iteratorError;
             }
         }
-    } catch (e) {
-        console.log('%c ' + e.message, 'color:red');
     }
 }();
 
