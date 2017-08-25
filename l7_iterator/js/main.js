@@ -1,4 +1,4 @@
-!function(){
+/*!function(){
     var result = [1, 2, 3];
     var index = 0;
     function Person(){
@@ -25,11 +25,11 @@
     var person = new Person();
     for(var item of person)
     console.log(item);
-}();
+}();*/
 
 
 // second
-!function(){
+/*!function(){
     function Person(age){
         var current = this;
         current.age = age;
@@ -60,4 +60,57 @@
     for(var person of person1) {
         console.log(person);
     }
+}();*/
+
+!function(){
+    let a = {
+        0: "hello",
+        1: "world",
+        length: 2,
+        index: 0,
+        [Symbol.iterator]: function(){
+            var self = this;
+            return {
+                next: function () {
+                    if(self.index < 2) {
+                        var value =self[self.index];
+                        self.index++;
+                        return {
+                            value
+                        }
+                    }
+                    else {
+                        return {
+                            done: true
+                        }
+                    }
+                },
+                return: function(){
+                    console.log("This is return");
+                    return {
+                        done: true
+                    }
+                }
+            }
+        }
+    }
+    for(let value of a ){
+        console.log(value);
+        if(value == "hello") {
+            throw new Error();
+        }
+    }
 }();
+<span style="font-size:12px;color:#999;">
+    hello
+    bundle.js:164 This is return
+    <span style="color:red">
+
+        bundle.js:181 Uncaught Error
+        at bundle.js:181
+        at Object.<anonymous> (bundle.js:198)
+        at __webpack_require__ (bundle.js:20)
+        at _defineProperty.0 (bundle.js:66)
+        at bundle.js:69
+    </span>
+</span>

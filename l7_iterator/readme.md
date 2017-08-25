@@ -19,6 +19,10 @@
 
 ![迭代器详解](./imgs/symboliterator.png)
 
+> `Symbol.iterator`返回的除了next之外还有`return`和`throw`，`return`主要是配合，`break`，`continue`，`throw`配合`Generator`使用。
+
+
+
 iterator主要是给for(... of )这种新的循环方式进行消费的
 
 ## ES6迭代器ES5化之后的代码

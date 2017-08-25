@@ -73,73 +73,113 @@
 "use strict";
 
 
-// !function(){
-//     var result = [1, 2, 3];
-//     var index = 0;
-//     function Person(){
-//         this[Symbol.iterator] = function() {
-//             return this;
-//         };
-//         this.next = function() {
-//             if(index < result.length) {
-//                 var returnVal = {
-//                         value: result[index],
-//                         done: false
-//                     };
-//                 index ++;
-//                 return returnVal;
-//             }
-//             else{
-//                 return {
-//                     done: true
-//                 }
-//             }
-//         };
-//     }
-//
-//     var person = new Person();
-//     for(var item of person)
-//     console.log(item);
-// }();
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+/*!function(){
+    var result = [1, 2, 3];
+    var index = 0;
+    function Person(){
+        this[Symbol.iterator] = function() {
+            return this;
+        };
+        this.next = function() {
+            if(index < result.length) {
+                var returnVal = {
+                        value: result[index],
+                        done: false
+                    };
+                index ++;
+                return returnVal;
+            }
+            else{
+                return {
+                    done: true
+                }
+            }
+        };
+    }
+
+    var person = new Person();
+    for(var item of person)
+    console.log(item);
+}();*/
 
 // second
-!function () {
-    function Person(age) {
+/*!function(){
+    function Person(age){
         var current = this;
         current.age = age;
         current[Symbol.iterator] = function () {
             return this;
         };
-        current.next = function () {
-            if (!!current) {
+        current.next = function(){
+            if(!!current) {
                 var age = current.age;
                 current = current.nextPerson;
                 return {
                     value: age,
-                    done: false
-                };
-            } else {
-                return {
-                    done: true
-                };
+                    done:false
+                }
             }
-        };
+            else {
+                return {
+                    done:true
+                }
+            }
+        }
     }
     var person1 = new Person(10);
     var person2 = new Person(11);
     var person3 = new Person(12);
     person1.nextPerson = person2;
     person2.nextPerson = person3;
+    for(var person of person1) {
+        console.log(person);
+    }
+}();*/
+
+!function () {
+    var a = _defineProperty({
+        0: "hello",
+        1: "world",
+        length: 2,
+        index: 0
+    }, Symbol.iterator, function () {
+        var self = this;
+        return {
+            next: function next() {
+                if (self.index < 2) {
+                    var value = self[self.index];
+                    self.index++;
+                    return {
+                        value: value
+                    };
+                } else {
+                    return {
+                        done: true
+                    };
+                }
+            },
+            return: function _return() {
+                console.log("This is return");
+                return {
+                    done: true
+                };
+            }
+        };
+    });
     var _iteratorNormalCompletion = true;
     var _didIteratorError = false;
     var _iteratorError = undefined;
 
     try {
-        for (var _iterator = person1[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var person = _step.value;
+        for (var _iterator = a[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var value = _step.value;
 
-            console.log(person);
+            console.log(value);
+            if (value == "hello") {
+                throw new Error();
+            }
         }
     } catch (err) {
         _didIteratorError = true;
