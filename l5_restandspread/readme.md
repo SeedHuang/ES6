@@ -187,3 +187,13 @@ function _toConsumableArray (arr) {
 
 
 # Rest
+
+rest与spread看似相同，但是使用场景不一样，rest作为函数的可变长参数在使用，并且，rest参数必须是最后一个参数，请看一下例子
+
+```
+var methodA = function(name, ...rest){
+    console.log(rest);
+}
+methodA("HuangChunhua", "32", "from Shanghai");
+// ["32", "from Shanghai"]
+```
