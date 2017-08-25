@@ -94,10 +94,16 @@
             }
         }
     }
-    for(let value of a ){
-        console.log(value);
-        if(value == "hello") {
-            throw new Error();
+    try {
+        for(let value of a ){
+            console.log(value);
+            if(value == "hello") {
+                throw new Error();
+            }
         }
     }
+    catch(e) {
+        console.log(e);
+    }
+
 }();
