@@ -101,16 +101,3 @@
         }
     }
 }();
-<span style="font-size:12px;color:#999;">
-    hello
-    bundle.js:164 This is return
-    <span style="color:red">
-
-        bundle.js:181 Uncaught Error
-        at bundle.js:181
-        at Object.<anonymous> (bundle.js:198)
-        at __webpack_require__ (bundle.js:20)
-        at _defineProperty.0 (bundle.js:66)
-        at bundle.js:69
-    </span>
-</span>
