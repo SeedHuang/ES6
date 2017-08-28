@@ -108,7 +108,7 @@
 }();
 */
 
-!function(){
+/*!function(){
     let a = {
         0: "hello",
         1: "world",
@@ -143,4 +143,44 @@
     for(let value of a ){
         continue;
     }
+}();*/
+
+
+!function(){
+    let a = {
+        0: "hello",
+        1: "world",
+        2: "My",
+        3: "Baby"
+        length: 4,
+        index: 0,
+        [Symbol.iterator]: function(){
+            var self = this;
+            return {
+                next: function () {
+                    console.log("In next",self[self.index]);
+                    if(self.index < 2) {
+                        var value = self[self.index];
+                        self.index++;
+                        return {
+                            value
+                        }
+                    }
+                    else {
+                        return {
+                            done: true
+                        }
+                    }
+                },
+                return: function(){
+                    console.log("This is return");
+                    return {
+                        done: true
+                    }
+                }
+            }
+        }
+    }
+
+
 }();

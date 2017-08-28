@@ -167,7 +167,7 @@ for (var _iterator = person[Symbol.iterator](), _step;
 
 > 目前在Chrome Canary 61版本上使用源码（未经过babel转换）测试该功，但是经过babel转换之后，continue的功能没有实现。
 
-> 需要注意的是
+> 需要注意的是,正确的使用方法是无条件的使用continue；像下面这种使用方法
 ```
 for(let value of a ){
     if(value == "hello") {
@@ -175,9 +175,11 @@ for(let value of a ){
     }
 }
 ```
-这种方式是不会触发return的
+是不会触发return的
 
 
 ## 有哪些地方用到Iterator
 
-这里大部分的内容来自于阮一峰的Iterator的章节
+> 这里大部分的内容来自于阮一峰的[Iterator](http://es6.ruanyifeng.com/#docs/iterator)的章节,本文所有内容更加偏向于实战
+
+简而言之最多使用在“带...”的场景，所谓的...就是解构、spread、rest参数
