@@ -63,3 +63,16 @@ Symbol.keyFor和Symbol.for相对应，keyFor只能获得Symbol.for对应的key
 ## Symbol内置值
 
 ![Symbol Inner value](./Symbol.png)
+
+查看阮一峰关于Symbol内置值详细解释
+- [Symbol.hasInstance](http://es6.ruanyifeng.com/#docs/symbol#Symbol-hasInstance)
+- [Symbol.isConcatSpreadable](http://es6.ruanyifeng.com/#docs/symbol#Symbol-isConcatSpreadable)
+- [Symbol.species](http://es6.ruanyifeng.com/#docs/symbol#Symbol-species)
+- [Symbol.match](http://es6.ruanyifeng.com/#docs/symbol#Symbol-match)
+- [Symbol.replace](http://es6.ruanyifeng.com/#docs/symbol#Symbol-replace)
+- [Symbol.search](http://es6.ruanyifeng.com/#docs/symbol#Symbol-search)
+- [Symbol.split](http://es6.ruanyifeng.com/#docs/symbol#Symbol-split)
+- [Symbol.iterator](http://es6.ruanyifeng.com/#docs/symbol#Symbol-iterator)
+- [Symbol.toPrimitive](http://es6.ruanyifeng.com/#docs/symbol#Symbol-toPrimitive)
+- [Symbol.toStringTag](http://es6.ruanyifeng.com/#docs/symbol#Symbol-toStringTag)
+- [Symbol.unscopables](http://es6.ruanyifeng.com/#docs/symbol#Symbol-unscopables)
