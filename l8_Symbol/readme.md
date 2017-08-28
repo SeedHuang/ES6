@@ -60,6 +60,6 @@ a1 === a2
 ### Symbol.keyFor
 Symbol.keyFor和Symbol.for相对应，keyFor只能获得Symbol.for对应的key
 
-### Symbol内置值
+## Symbol内置值
 
 ![Symbol Inner value](./Symbol.png)
