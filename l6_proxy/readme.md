@@ -50,7 +50,7 @@ var instance = new ProxyFunc("Seed", "Huang");
 // new construct return {message: "This is a show test"}
 ```
 
-### 参数
+***参数***
 
 index   |type       |description
 --------|-----------|-------------------------------
@@ -58,7 +58,7 @@ index   |type       |description
 1       |array      |参数
 2       |func       |新construct
 
-### 返回值
+***返回值***
 
 type           |description
 ---------------|----------------------
@@ -72,14 +72,14 @@ object         |construct的return值是作为new Proxy()真正返回值
 
 > deleteProperty拦截器应该是最可以体现`Proxy`对于对象保护措施的作用。
 
-### 参数
+***参数***
 
 name        |type           |description
 ------------|---------------|----------------------
 target      |obj            |原对象
 property    |string         |属性名称
 
-### 返回值
+***返回值***
 
 type           |description
 ---------------|----------------------
@@ -111,14 +111,14 @@ console.log(obj.firstName);
 
 > has操作主要针对的是`in`操作符但对`for ... in`无效
 
-### 参数
+***参数***
 
 name        |type           |description
 ------------|---------------|----------------------
 target      |obj            |原对象
 property    |string         |属性名称
 
-### 返回值
+***返回值***
 
 type           |description
 ---------------|----------------------
@@ -157,14 +157,14 @@ console.log(proxyObj.firstName)
 - Object.keys
 对 for(... in)依然无效
 
-### 参数
+***参数***
 
 name        |type           |description
 ------------|---------------|----------------------
 target      |obj            |原对象
 property    |string         |属性名称
 
-### 返回值
+***返回值***
 
 type           |description
 ---------------|----------------------
