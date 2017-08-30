@@ -1,14 +1,33 @@
-import "babel-polyfill";
-
-function* Generator(firstName, lastName) {
-        let _firstName, _lastName;
-        yield _firstName = firstName;
-        yield _lastName = lastName;
-        return `${_lastName} ${_lastName}`;
+function * Generator () {
+    yield 1;
+    yield 2;
+    yield 3;
+    return "ending"
 }
 
-var iterator = Generator('Huang', 'Chunhua');
-console.log(iterator.next());
-console.log(iterator.next())
-console.log(iterator.next())
-document.body.innerHTML = "";
+var generator = Generator();
+console.log([...generator]);
+console.log(generator.next());
+console.log(generator.next());
+console.log(generator.next());
+console.log(generator.next());
+
+
+function * Generator2 () {
+    yield "aa";
+    yield "bb";
+    yield "cc";
+    return "ending"
+}
+
+var generator2 = Generator2();
+console.log(generator2);
+var a = {
+    0:1,
+    1:2,
+    2:3,
+    length: 3,
+    [Symbol.iterator]:function(){return generator2}
+}
+
+console.log([...a]);
