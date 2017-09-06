@@ -217,6 +217,6 @@ for(let item of generator1) {
 // 2
 // 3
 // 4
-// "generator2 end"
+// "generator2 end" 
 // 5
 ```
