@@ -55,28 +55,51 @@
 // console.log(generator.next());
 // console.log(generator.next());
 
+// !function(){
+//     function foo(a, b){
+//         debugger;
+//         console.log(a, b);
+//     }
+//
+//     function* testyield(){
+//         let a = yield 1;
+//         console.log(a);
+//         let b = yield 2
+//         console.log(b);
+//         let result = a + b;
+//         console.log(result);
+//     }
+//
+//     var testgenerat = testyield();
+//     var lastValue = testgenerat.next().value;
+//
+//     console.log(lastValue);
+//
+//     lastValue = testgenerat.next(lastValue).value;
+//
+//     console.log(lastValue);
+//
+//     lastValue = testgenerat.next(lastValue).value;
+// }
 
-function foo(a, b){
-    debugger;
-    console.log(a, b);
-}
 
-function* testyield(){
-    let a = yield 1;
-    console.log(a);
-    let b = yield 2
-    console.log(b);
-    let result = a + b;
-    console.log(result);
-}
+!function(){
+    function* Generator1() {
+        yield 1;
+        let var0 = yield* Generator2();
+        console.log(var0);
+        this.name = "Seed Huang"
+        yield 5;
+    }
 
-var testgenerat = testyield();
-var lastValue = testgenerat.next().value;
-
-console.log(lastValue);
-
-lastValue = testgenerat.next(lastValue).value;
-
-console.log(lastValue);
-
-lastValue = testgenerat.next(lastValue).value;
+    function* Generator2() {
+        yield 2;
+        yield 3;
+        yield 4;
+        return "generator2 end";
+    }
+    var generator1 = Generator1();
+    for(let item of generator1) {
+        console.log(item);
+    }
+}();

@@ -28,10 +28,10 @@ function * Generator(){
 
 ***返回值***
 
-name    |value                          |description
---------|-------------------------------|----------------------
-next    |{done:false/true,value:xxxx}   |
-return  |{done:true}                    |在error，continue，break时触发
+name    |value                                              |description
+--------|---------------------------------------------------|----------------------
+next    |function(){return {done:false/true,value:xxxx};}   |
+return  |function(){return {done:true}}                     |在error，continue，break时触发
 
 
 ***Example***
@@ -189,3 +189,34 @@ lastValue = generator.next(lastValue).value;
 ```
 
 ![yieldruningsteps](./imgs/yieldruningsteps.png)
+
+# yield*
+
+在一个Generator里面要使用另外一个Generator是没有效果的，这种情况下需要使用`yield*`
+
+```
+function* Generator1() {
+    yield 1;
+    let var0 = yield* Generator2();
+    console.log(var0);
+    yield 5;
+}
+
+function* Generator2() {
+    yield 2;
+    yield 3;
+    yield 4;
+    return "generator2 end";
+}
+var generator1 = Generator1();
+for(let item of generator1) {
+    console.log(item);
+}
+
+// 1
+// 2
+// 3
+// 4
+// "generator2 end"
+// 5
+```

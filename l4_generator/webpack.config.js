@@ -1,8 +1,11 @@
 module.exports = {
-        entry: ['babel-polyfill', `${__dirname}/js/main.js`],
+        entry: {
+            "bundle1":['babel-polyfill', `${__dirname}/js/main.js`],
+            "bundle2":['babel-polyfill', `${__dirname}/js/main2.js`]
+        },
         output: {
                 path: `${__dirname}/dist`,
-                filename: `bundle.js`
+                filename: `[name].js`
         },
         module: {
                 loaders: [
